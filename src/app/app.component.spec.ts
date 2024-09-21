@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'okta-angular-example' title`, () => {
+  it(`should have the 'angular-okta-template' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('okta-angular-example');
+    expect(app.title).toEqual('angular-okta-template');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, okta-angular-example');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-okta-template');
   });
 });

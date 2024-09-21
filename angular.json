@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "okta-angular-example": {
+    "angular-okta-template": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/okta-angular-example",
+            "outputPath": "dist/angular-okta-template",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "okta-angular-example:build:production"
+              "buildTarget": "angular-okta-template:build:production"
             },
             "development": {
-              "buildTarget": "okta-angular-example:build:development"
+              "buildTarget": "angular-okta-template:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "okta-angular-example:build"
+            "buildTarget": "angular-okta-template:build"
           }
         },
         "test": {
