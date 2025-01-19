@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 import { routes } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
           redirectUri: `${window.location.origin}/login/callback`,
           scopes: ['openid', 'offline_access', 'profile']
         })
-      })
+      }), HttpClientModule
     ),
     provideRouter(routes)
   ]
