@@ -1,0 +1,42 @@
+<!-- <p>
+    protected works!
+  </p>
+  <div class="user-container">
+<ul>
+  <li *ngFor="let patient of patients | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+    {{ patient.firstName }} - {{ patient.lastName }}
+  </li>
+</ul>
+
+
+<pagination-controls
+  (pageChange)="currentPage = $event"
+  previousLabel="Previous"
+  nextLabel="Next">
+</pagination-controls>
+</div> -->
+<ul>
+  <li *ngFor="let patient of patients | paginate: currentPage: itemsPerPage">
+    <!-- <li *ngFor="let patient of patients"> -->
+    {{ patient.firstName }} - {{ patient.lastName }}
+  </li>
+</ul>
+
+<button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">
+  Previous
+</button>
+<button
+  (click)="currentPage = currentPage + 1"
+  [disabled]="currentPage === totalPages"
+>
+  Next
+</button>
+
+
+  <!-- <p>{{patient}}</p> -->
+  <div>***********************Paitent Data***********************</div>
+  <p>{{appointment}}</p>
+  <div>***********************Doctor Data***********************</div>
+  <p>{{doctor}}</p>
+  <div>***********************Appointment Data***********************</div>
+  <p>{{appointment}}</p>
