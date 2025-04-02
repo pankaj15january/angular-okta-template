@@ -1,0 +1,10 @@
+<h2>Doctor List</h2>
+    <!-- <div *ngFor="let doctor of doctors" ><div>a</div></div> -->
+    <ul>
+      <!-- <li *ngFor="let doctor of doctors" (click)="selectDoctor(doctor)">  -->
+        <li *ngFor="let doctor of doctors"> 
+         {{ doctor.firstName }} - {{ doctor.lastName }} - {{ doctor.specialization }} - {{ doctor.schedule }}
+      </li>
+    </ul>
+    <app-doctor-detail></app-doctor-detail>
+    <!-- <app-doctor-detail *ngIf="selectedDoctor" [doctor]="selectedDoctor"></app-doctor-detail>-->

@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PaginatePipe } from '../../protected/paginate.pipe';
+import { PaginatePipe } from '../../appointment/paginate.pipe';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 
 @NgModule({
   declarations: [],
-  imports: [ PaginatePipe ],
+  imports: [ PaginatePipe, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, BrowserModule, BrowserAnimationsModule, ReactiveFormsModule, MatFormFieldModule ],
   // exports: [PaginatePipe]
 })
 export class SharedModule { }

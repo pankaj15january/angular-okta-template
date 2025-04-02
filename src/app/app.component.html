@@ -5,14 +5,29 @@
       <a routerLink="/">Home</a>
       <a routerLink="/profile">Profile</a>
       <a routerLink="/protected">Protected</a>
+      <a routerLink="/protected/appointment">Appointment</a>
+      <a routerLink="/protected/doctor">Doctor Management</a>
     </nav>
   </div>
   <a class="auth" (click)="signOut()">Sign out</a>
   } @else {
+    <div>
   <a class="auth" (click)="signIn()">Sign in</a>
+  <nav class="routes">
+    {{str}}
+    <a routerLink="/home">Home</a>
+    <a routerLink="/aboutus">About Us</a>
+  </nav>
+</div>
+
   }
 </div>
 
-<p>Learn more about Okta at <a href="https://developer.okta.com">developer.okta.com</a></p>
+<!-- <p>Learn more about Okta at <a href="https://developer.okta.com">developer.okta.com</a></p> -->
+<!-- @if(isSliderVisible){
+<div>
+  <iframe src="../assets/slider.html" width="100%" height="480"></iframe>
+</div>
+} -->
 
 <router-outlet></router-outlet>

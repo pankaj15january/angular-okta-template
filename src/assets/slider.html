@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .slider {
+      position: relative;
+      width: 80%;
+      max-width: 700px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .navigation {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .navigation button {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .navigation button:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .dots span {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dots .active {
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="slides">
+     <!-- <img src="https://via.placeholder.com/700x400?text=Image+1" alt="Image 1">
+      <img src="https://via.placeholder.com/700x400?text=Image+2" alt="Image 2">
+      <img src="https://via.placeholder.com/700x400?text=Image+3" alt="Image 3">-->
+	  <img src="../assets/images/s1.jpg" alt="Image 1">
+	  <img src="../assets/images/s2.jpg" alt="Image 2">
+	  <img src="../assets/images/s3.jpg" alt="Image 3">
+	  <img src="../assets/images/s4.jpg" alt="Image 4">
+	  <img src="../assets/images/s5.jpg" alt="Image 5">
+      
+    </div>
+    <div class="navigation">
+      <button id="prev">⟨</button>
+      <button id="next">⟩</button>
+    </div>
+    <div class="dots">
+      <span data-index="0" class="active"></span>
+      <span data-index="1"></span>
+      <span data-index="2"></span>
+	  <span data-index="3"></span>
+      <span data-index="4"></span>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    const dots = document.querySelectorAll('.dots span');
+    let currentIndex = 0;
+
+    function updateSlider(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider(currentIndex);
+    });
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlider(currentIndex);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentIndex = parseInt(dot.getAttribute('data-index'));
+        updateSlider(currentIndex);
+      });
+    });
+
+    // Auto-slide functionality
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider(currentIndex);
+    }, 3000);
+  </script>
+</body>
+</html>

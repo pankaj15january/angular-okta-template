@@ -1,0 +1,47 @@
+<div *ngFor="let doctor of doctors">
+<div class="container mx-auto p-6">
+    <div class="flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-lg p-6">
+      <!-- Profile Picture -->
+      <!-- <div class="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary mb-4 md:mb-0">
+        <img [src]="doctor.image" alt="{{ doctor.firstNname }}" class="object-cover w-full h-full">
+      </div> -->
+  
+      <!-- Dentist Info -->
+    <!-- <div class="flex-1 md:ml-6">
+        <h1 class="text-2xl font-bold text-gray-800">{{ doctor.firstName }}</h1>
+        <p class="text-gray-600">{{ doctor.specialization }}</p>
+        <p class="text-gray-500 mt-2">
+          <span class="font-semibold">Specialization:</span> {{ doctor.specialization }} years
+        </p>
+        <p class="text-gray-500">
+          <span class="font-semibold">Schedule:</span> {{ doctor.schedule }}
+        </p>
+        <p class="text-gray-500">
+          <span class="font-semibold">Doctor Id:</span> {{ doctor.doctorId }}
+        </p>
+      </div>
+    </div> -->
+  
+    <!-- Services Offered -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-800">Services Offered</h2>
+      <ul class="list-disc list-inside mt-4 text-gray-600">
+        <li *ngFor="let service of doctor.services">{{ service }}</li>
+      </ul>
+    </div>
+  
+    <!-- Reviews -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-800">Patient Reviews</h2>
+      <div *ngFor="let review of doctor.reviews" class="bg-gray-100 rounded-lg p-4 mt-4">
+        <p class="text-gray-800">
+          <span class="font-semibold">{{ review.patientName }}</span> says:
+        </p>
+        <p class="text-gray-600 mt-2">"{{ review.comment }}"</p>
+        <div class="mt-2 flex items-center">
+          <span *ngFor="let star of [].constructor(review.rating)" class="text-yellow-500">&#9733;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

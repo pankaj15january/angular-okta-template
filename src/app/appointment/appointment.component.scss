@@ -1,0 +1,47 @@
+.user-container {
+    width: 50%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+  }
+  
+  pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+  }
+  //Mat style
+  .mat-elevation-z8 {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .table-container {
+    // max-width: 800px;
+    max-width: auto;
+    margin: auto;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+  }
+  // .table-container {
+  //   width: 100%;
+  //   overflow-x: auto;
+  // }
+  
+  // mat-form-field {
+  //   width: 100%;
+  //   margin-bottom: 10px;
+  // }
+  
+  

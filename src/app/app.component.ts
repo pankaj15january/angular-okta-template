@@ -13,6 +13,7 @@ import { filter, map } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  str: String= "Hello";
   private oktaStateService = inject(OktaAuthStateService);
   private oktaAuth = inject(OKTA_AUTH);
 
@@ -23,6 +24,7 @@ export class AppComponent {
 
   public async signIn(): Promise<void> {
     await this.oktaAuth.signInWithRedirect();
+    this.str = this.str+" Hello India";
   }
 
   public async signOut(): Promise<void> {

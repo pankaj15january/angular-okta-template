@@ -1,22 +1,14 @@
-.user-container {
-    width: 50%;
-    margin: auto;
-    font-family: Arial, sans-serif;
+.mat-form-field {
+    width: 100%; /* Ensures input/selects take full width */
   }
   
-  ul {
-    list-style: none;
-    padding: 0;
+  .mat-table td {
+    padding: 8px; /* Adjust padding for better spacing */
   }
   
-  li {
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin: 5px 0;
-  }
-  
-  pagination-controls {
-    margin-top: 20px;
-    text-align: center;
+  .mat-form-field-in-table {
+    margin: 0; /* Removes unnecessary margin */
+    display: flex;
+    align-items: center;
   }
   

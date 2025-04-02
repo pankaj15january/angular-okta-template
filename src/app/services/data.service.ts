@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  private url = 'https://3j377u6gi6.execute-api.ap-south-1.amazonaws.com/dev';
+  private apiUrl = 'https://3j377u6gi6.execute-api.ap-south-1.amazonaws.com/dev';
 
     constructor(private http: HttpClient) { }
 
@@ -22,20 +22,24 @@ export class DataService {
     }
 
     getPatient(): Observable<any> {
-      return this.http.get(this.url + '/api/v1/patient');
+      return this.http.get(this.apiUrl + '/api/v1/patient');
     }
 
-    getDoctor(): Observable<any> {
-      return this.http.get(this.url + '/api/v1/doctor');
+    getDoctors(): Observable<any> {
+      return this.http.get(this.apiUrl + '/api/v1/doctor');
     }
 
     getAppointment(): Observable<any> {
-      return this.http.get(this.url + '/api/v1/appointment');
+      return this.http.get(this.apiUrl + '/api/v1/appointment');
     }
 
     // getPatient(){
 
-    //   return this.http.get(this.url);
+    //   return this.http.get(this.apiUrl);
   
     // }
+
+    saveDoctor(doctor: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl + '/api/v1/doctor', doctor);
+    }
 }
