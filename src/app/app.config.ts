@@ -18,8 +18,8 @@ export const appConfig: ApplicationConfig = {
         oktaAuth: new OktaAuth({
           issuer: 'https://dev-07280506.okta.com/oauth2/default',
           clientId: '0oajnn8rn3cEFsjVI5d7',
-          // redirectUri: `${window.location.origin}/login/callback`,
-          redirectUri: `${window.location.origin}/angular-okta-template/login/callback`,
+          redirectUri: `${window.location.origin}/login/callback`,
+          // redirectUri: `${window.location.origin}/angular-okta-template/login/callback`,
           scopes: ['openid', 'offline_access', 'profile']
         })
       }), HttpClientModule, CommonModule, NgxPaginationModule, SharedModule
