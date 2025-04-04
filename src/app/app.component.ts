@@ -23,8 +23,7 @@ export class AppComponent {
   );
 
   public async signIn(): Promise<void> {
-    await this.oktaAuth.signInWithRedirect();
-    this.str = this.str+" Hello India";
+    await this.oktaAuth.signInWithRedirect();    
   }
 
   public async signOut(): Promise<void> {
