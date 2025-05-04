@@ -1,0 +1,284 @@
+<!-- Working code start--
+<ul>
+  <li *ngFor="let patient of patients | paginate: currentPage: itemsPerPage">
+    {{ patient.firstName }} - {{ patient.lastName }}
+  </li>
+</ul>
+
+<button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">
+  Previous
+</button>
+<button
+  (click)="currentPage = currentPage + 1"
+  [disabled]="currentPage === totalPages"
+>
+  Next
+</button>
+
+
+  <div>***********************Paitent Data***********************</div>
+  <p>{{appointment}}</p>
+  <div>***********************Doctor Data***********************</div>
+  <p>{{doctor}}</p>
+  <div>***********************Appointment Data***********************</div>
+  <p>{{appointment}}</p>
+  Working code end
+-->
+
+<!-- <div class="table-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort>
+    --Column Definitions --
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birthday">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>DOB</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.birthday }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.phoneNumber }}</mat-cell>
+    </ng-container>
+
+    -- Header and Rows --
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div> -->
+
+<div class="container">
+  <!-- Toggle button -->
+  <button (click)="toggleCreateMode()">
+    {{ isCreating ? 'Cancel' : 'Create New Item' }}
+  </button>
+
+   <!-- Create Form -->
+   <div *ngIf="isCreating">
+     <!-- Patient form start -->
+    <input type="text" #itemInput placeholder="Enter item name" />
+    <button (click)="addItem(itemInput.value); itemInput.value = ''">Add</button>
+  
+  <div class="form-container">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" type="text" placeholder="Enter full name" />
+      <div *ngIf="patientForm.get('name')?.invalid && patientForm.get('name')?.touched">
+        name is required (Min: 3 characters).
+      </div>
+
+      <label for="birthday">Birthday</label>
+      <input id="birthday" formControlName="birthday" type="date" />
+      <div *ngIf="patientForm.get('birthday')?.invalid && patientForm.get('birthday')?.touched">
+        select birthday.
+      </div>
+
+      <label for="gender">Gender</label>      
+      <div style="display: flex;">
+        <!-- <div style="flex-grow: 1; flex-basis: 33.33%;"> -->
+          <input type="radio" formControlName="gender" value="male" />
+          Male
+        <!-- </div> -->
+        <!-- <div style="flex-grow: 1; flex-basis: 33.33%;"> -->
+          <input type="radio" formControlName="gender" value="female" />
+          Female
+        <!-- </div> -->
+        <!-- <div style="flex-grow: 1; flex-basis: 33.33%;"> -->
+          <input type="radio" formControlName="gender" value="other" />
+          Other
+        <!-- </div> -->
+      </div>
+
+      <label for="phoneNumber">Phone</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" placeholder="Enter phone number" />
+      <div *ngIf="patientForm.get('phoneNumber')?.invalid && patientForm.get('phoneNumber')?.touched">
+        enter a valid phone number.
+      </div>
+
+      <label for="streetAddress">Address</label>
+      <input id="streetAddress" formControlName="streetAddress" type="text" placeholder="Enter street address" />
+      <div *ngIf="patientForm.get('streetAddress')?.invalid && patientForm.get('streetAddress')?.touched">
+        street address is required.
+      </div>
+
+      <label for="postcode">Postcode</label>
+      <input id="postcode" formControlName="postcode" type="text" placeholder="Enter postcode" />
+      <div *ngIf="patientForm.get('postcode')?.invalid && patientForm.get('postcode')?.touched">
+        postcode is required.
+      </div>
+
+      <label for="billing">Billing</label>
+      <input id="billing" formControlName="billing" type="text" placeholder="Enter a billing amount" />
+      <div *ngIf="patientForm.get('billing')?.invalid && patientForm.get('billing')?.touched">
+        Billing is required.
+      </div>
+
+      <div>
+        <label for="doctor">Doctor</label>
+        <select id="doctor" formControlName="doctorId" name="doctorId" required>
+            <option *ngFor="let doc of doctors" [value]="doc.doctorId">{{ doc.firstName+" "+doc.lastName }}</option>
+        </select>
+        <small *ngIf="patientForm.get('doctor')?.touched && patientForm.get('doctor')?.invalid">
+
+        </small>
+    </div>
+
+    <label for="profilePicturePath">Profile Picture Path</label>
+    <input id="profilePicturePath" formControlName="profilePicturePath" type="text" placeholder="Enter Profile PicturePath" />
+    <div *ngIf="patientForm.get('profilePicturePath')?.invalid && patientForm.get('profilePicturePath')?.touched">
+      profile picture path is required.
+    </div>
+
+    <label for="conditionImage">Condition Image Path</label>
+    <input id="conditionImage" formControlName="conditionImage" type="text" placeholder="Enter condition image" />
+    <div *ngIf="patientForm.get('conditionImage')?.invalid && patientForm.get('conditionImage')?.touched">
+      condition image is required.
+    </div>
+
+    <!-- <label for="comments">Comments</label>
+    <input id="comments" formControlName="comments" type="text" placeholder="Enter comments" />
+    <div *ngIf="patientForm.get('comments')?.invalid && patientForm.get('comments')?.touched">
+      comments is required.
+    </div> -->
+
+    <label for="appointments">Appointments</label>
+    <input id="appointments" formControlName="appointments" type="text" placeholder="Enter appointments" />
+    <div *ngIf="patientForm.get('appointments')?.invalid && patientForm.get('appointments')?.touched">
+      appointments is required.
+    </div>
+
+    <label for="condition">Condition</label>
+    <input id="condition" formControlName="condition" type="text" placeholder="Enter condition" />
+    <div *ngIf="patientForm.get('condition')?.invalid && patientForm.get('condition')?.touched">
+      condition is required.
+    </div>
+
+    <label for="conditionURI">ConditionURI</label>
+    <input id="conditionURI" formControlName="conditionURI" type="text" placeholder="Enter conditionURI" />
+    <div *ngIf="patientForm.get('conditionURI')?.invalid && patientForm.get('conditionURI')?.touched">
+      conditionURI is required.
+    </div>
+  
+      <!-- <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" placeholder="Enter email" />
+      <div *ngIf="patientForm.get('email')?.invalid && patientForm.get('email')?.touched">
+        Enter a valid email.
+      </div> -->      
+  
+      <!-- <label for="specialization">Specialization</label>
+      <select id="specialization" formControlName="specialization">
+        <option value="">Select Specialization</option>
+        <option value="cardiologist">Cardiologist</option>
+        <option value="neurologist">Neurologist</option>
+        <option value="pediatrician">Pediatrician</option>
+      </select>
+      <div *ngIf="patientForm.get('specialization')?.invalid && patientForm.get('specialization')?.touched">
+        Specialization is required.
+      </div> -->
+  
+      <!-- <label for="availableDate">Available Date</label>
+      <input id="availableDate" formControlName="availableDate" type="date" />
+      <div *ngIf="patientForm.get('availableDate')?.invalid && patientForm.get('availableDate')?.touched">
+        Select an available date.
+      </div> -->
+  
+      <label for="comments">Comments</label>
+      <textarea id="comments" formControlName="comments" rows="3" placeholder="Additional comments (optional)"></textarea>
+  
+      <button type="submit" [disabled]="patientForm.invalid">Submit</button>
+    </form>
+  </div>
+  <!-- Patient form end -->
+</div>
+
+  <!-- List View -->
+  <div *ngIf="!isCreating">
+
+<div class="table-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    
+    <!-- First Name Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Last Age Column -->
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+      <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+    </ng-container>
+
+    <!-- Last Gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+      <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+    </ng-container>
+
+    <!-- Birthday Column -->
+    <ng-container matColumnDef="birthday">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Birth Day</th>
+      <td mat-cell *matCellDef="let element">{{ element.birthday }}</td>
+    </ng-container>
+
+    <!-- Phone number Column -->
+    <ng-container matColumnDef="phonenumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+    </ng-container>
+
+    
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    
+    <!-- Appointments Column -->
+    <ng-container matColumnDef="appointments">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointments</th>
+      <td mat-cell *matCellDef="let element">{{ element.appointments }}</td>
+    </ng-container>
+
+    
+    <!-- Comments Column -->
+    <ng-container matColumnDef="comments">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Comments</th>
+      <td mat-cell *matCellDef="let element">{{ element.comments }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+</div>
+</div>
+

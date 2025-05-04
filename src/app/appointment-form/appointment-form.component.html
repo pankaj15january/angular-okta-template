@@ -1,0 +1,55 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="bookAppointment()" novalidate>
+    <div>
+      <label>Full Name</label>
+      <input formControlName="name" />
+      <small *ngIf="appointmentForm.get('name')?.touched && appointmentForm.get('name')?.invalid">
+        Name is required.
+      </small>
+    </div>
+  
+    <div>
+      <label>Email</label>
+      <input formControlName="email" type="email" />
+      <small *ngIf="appointmentForm.get('email')?.touched && appointmentForm.get('email')?.invalid">
+        Enter a valid email.
+      </small>
+    </div>
+  
+    <div>
+      <label>Phone</label>
+      <input formControlName="phone" type="tel" />
+      <small *ngIf="appointmentForm.get('phone')?.touched && appointmentForm.get('phone')?.invalid">
+        Enter a valid 10-digit phone number.
+      </small>
+    </div>
+
+    <div>
+        <label>Doctor</label>
+        <select id="doctor" formControlName="doctorId" name="doctorId" required>
+            <option *ngFor="let doc of doctors" [value]="doc.doctorId">{{ doc.firstName }}</option>
+        </select>
+        <small *ngIf="appointmentForm.get('doctor')?.touched && appointmentForm.get('doctor')?.invalid">
+
+        </small>
+    </div>
+  
+    <div>
+      <label>Preferred Date</label>
+      <input formControlName="preferredDate" type="date" />
+    </div>
+  
+    <div>
+      <label>Preferred Time</label>
+      <input formControlName="preferredTime" type="time" />
+    </div>
+  
+    <div>
+      <label>Message (optional)</label>
+      <textarea formControlName="message"></textarea>
+    </div>
+  
+    <button type="submit">Book Appointment</button>
+  </form>
+
+  
+  

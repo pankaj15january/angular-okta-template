@@ -4,11 +4,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import { AuthState } from '@okta/okta-auth-js';
 import { filter, map } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AsyncPipe, RouterOutlet, RouterLink],
+  imports: [AsyncPipe, RouterOutlet, RouterLink, MatToolbarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

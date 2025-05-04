@@ -1,11 +1,12 @@
-<div class="toolbar">
+<!-- <div class="menubar">
   @if (isAuthenticated$ | async) {
   <div>
-    <nav class="routes">
+    <nav class="menu routes">
       <a routerLink="/">Home</a>
       <a routerLink="/profile">Profile</a>
       <a routerLink="/protected">Protected</a>
-      <a routerLink="/protected/appointment">Appointment</a>
+      <a routerLink="/protected/app-appointment-form">Appointment</a>
+      <a routerLink="/protected/patient">Patient list</a>      
       <a routerLink="/protected/doctor">Doctor Management</a>
     </nav>
   </div>
@@ -21,7 +22,36 @@
 </div>
 
   }
-</div>
+</div> -->
+@if (isAuthenticated$ | async) {
+  <div class="flex-end">
+    <a class="auth" (click)="signOut()">Sign out</a>
+  </div>
+<mat-toolbar color="primary">
+  <span>Hospital Management System</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/">Home</button>
+  <button mat-button routerLink="/profile">Profile</button>
+  <button mat-button routerLink="/protected">Protected</button>
+  <button mat-button routerLink="/protected/app-appointment-form">Appointment</button>
+  <button mat-button routerLink="/protected/patient">Patient list</button>      
+  <button mat-button routerLink="/protected/doctor">Doctor Management</button>
+  <button mat-button routerLink="/protected">Products</button>
+  <button mat-button routerLink="/protected/app-email-form">Email</button>
+  <button mat-button>Contact</button>
+</mat-toolbar>
+} @else {
+  <div class="flex-end">
+    <a class="auth" (click)="signIn()">Sign in</a>
+  </div>
+  <mat-toolbar color="primary">
+    <span>Hospital Management System</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/aboutus">About Us</button>
+  </mat-toolbar>
+}
+
 
 <!-- <p>Learn more about Okta at <a href="https://developer.okta.com">developer.okta.com</a></p> -->
 <!-- @if(isSliderVisible){

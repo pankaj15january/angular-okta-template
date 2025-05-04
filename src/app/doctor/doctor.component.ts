@@ -14,10 +14,12 @@ import { CommonModule } from '@angular/common';
 })
 export class DoctorComponent {
   doctorForm: FormGroup;
+  isCreating = false;
 
   constructor(private fb: FormBuilder, private dataService: DataService) {
     this.doctorForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required]],
       // firstName: ['', Validators.required],
       // lastName: ['', Validators.required],
       specialization: ['', Validators.required],
@@ -35,6 +37,7 @@ export class DoctorComponent {
         next: (response) => {
           console.log('Doctor saved successfully', response);
           this.doctorForm.reset();
+          this.isCreating = false;
         },
         error: (error) => {
           console.error('Error saving doctor', error);
@@ -42,4 +45,10 @@ export class DoctorComponent {
       });
     }
   }
+
+  toggleCreateMode() {
+    this.isCreating = !this.isCreating;
+    this.doctorForm.reset();
+  }
+
 }

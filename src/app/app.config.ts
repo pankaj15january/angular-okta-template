@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 // import { PaginatePipe } from './protected/paginate.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './shared/shared/shared.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 export const appConfig: ApplicationConfig = {
@@ -18,12 +19,12 @@ export const appConfig: ApplicationConfig = {
         oktaAuth: new OktaAuth({
           issuer: 'https://dev-07280506.okta.com/oauth2/default',
           clientId: '0oajnn8rn3cEFsjVI5d7',
-          // redirectUri: `${window.location.origin}/login/callback`,
-          redirectUri: `${window.location.origin}/angular-okta-template/login/callback`,
+          redirectUri: `${window.location.origin}/login/callback`,
+          // redirectUri: `${window.location.origin}/angular-okta-template/login/callback`,
           scopes: ['openid', 'offline_access', 'profile']
         })
       }), HttpClientModule, CommonModule, NgxPaginationModule, SharedModule
     ),
-    provideRouter(routes)
+    provideRouter(routes), provideAnimationsAsync()
   ]
 };

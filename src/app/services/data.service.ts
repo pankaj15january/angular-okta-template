@@ -1,6 +1,6 @@
 // src/app/data.service.ts
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  private apiUrl = 'https://3j377u6gi6.execute-api.ap-south-1.amazonaws.com/dev';
+  // private apiUrl = 'https://3j377u6gi6.execute-api.ap-south-1.amazonaws.com/dev';
+  private apiUrl = 'http://localhost:8080';
 
     constructor(private http: HttpClient) { }
 
@@ -41,5 +42,33 @@ export class DataService {
 
     saveDoctor(doctor: any): Observable<any> {
       return this.http.post<any>(this.apiUrl + '/api/v1/doctor', doctor);
+    }
+
+    saveAppointment(appointment: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl + '/api/v1/appointment', appointment);
+    }
+
+    savePatient(patient: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl + '/api/v1/patient', patient);
+    }
+
+    // this.http.post('http://localhost:8080/api/email/send', formData).subscribe({
+    //   next: () => alert('Email sent successfully!'),
+    //   error: err => alert('Error sending email: ' + err.message)
+    // });
+
+    sendEmail(formData: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl + '/api/v1/email/send', formData);
+
+      // return this.http.post('http://localhost:8080/api/v1/email/send', body, {
+      //   headers: new HttpHeaders({
+      //     'Content-Type': 'application/json'
+      //   })
+      // })
+      // .subscribe({
+      //     next: () => alert('Email sent successfully!'),
+      //     error: err => alert('Error sending email: ' + err.message)
+      //   });
+
     }
 }
