@@ -1,0 +1,14 @@
+.mat-form-field {
+    width: 100%; /* Ensures input/selects take full width */
+  }
+  
+  .mat-table td {
+    padding: 8px; /* Adjust padding for better spacing */
+  }
+  
+  .mat-form-field-in-table {
+    margin: 0; /* Removes unnecessary margin */
+    display: flex;
+    align-items: center;
+  }
+  

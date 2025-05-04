@@ -1,0 +1,15 @@
+<!-- src/app/components/patient/patient.component.html -->
+<div class="p-4 max-w-md mx-auto space-y-4">
+  <h2 class="text-xl font-bold">Add Patient</h2>
+  <input [(ngModel)]="name" placeholder="Name" class="border p-2 w-full" />
+  <input [(ngModel)]="age" type="number" placeholder="Age" class="border p-2 w-full" />
+  <input [(ngModel)]="condition" placeholder="Condition" class="border p-2 w-full" />
+  <button (click)="addPatient()" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+
+  <h3 class="text-lg font-semibold mt-6">Patient List</h3>
+  <ul>
+    <li *ngFor="let patient of patients" class="border-b py-2">
+      {{ patient.id }}. {{ patient.name }} - Age: {{ patient.age }}, Condition: {{ patient.condition }}
+    </li>
+  </ul>
+</div>

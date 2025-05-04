@@ -1,0 +1,65 @@
+<!-- Toggle button -->
+<button (click)="toggleCreateMode()">
+  {{ isCreating ? 'Cancel' : 'Create New Item' }}
+</button>
+
+ <!-- Create Form -->
+ <div *ngIf="isCreating">
+   <!-- Patient form start -->
+<div class="form-container">
+  <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name</label>
+    <input id="firstName" formControlName="firstName" type="text" placeholder="Enter first name" />
+    <div *ngIf="doctorForm.get('firstName')?.invalid && doctorForm.get('firstName')?.touched">
+      First name is required (Min: 3 characters).
+    </div>
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" formControlName="lastName" type="text" placeholder="Enter last name" />
+    <div *ngIf="doctorForm.get('lastName')?.invalid && doctorForm.get('lastName')?.touched">
+      Last name is required (Min: 3 characters).
+    </div>
+
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" placeholder="Enter email" />
+    <div *ngIf="doctorForm.get('email')?.invalid && doctorForm.get('email')?.touched">
+      Enter a valid email.
+    </div>
+
+    <label for="phone">Phone</label>
+    <input id="phone" formControlName="phone" type="text" placeholder="Enter phone number" />
+    <div *ngIf="doctorForm.get('phone')?.invalid && doctorForm.get('phone')?.touched">
+      Enter a valid phone number.
+    </div>
+
+    <label for="specialization">Specialization</label>
+    <select id="specialization" formControlName="specialization">
+      <option value="">Select Specialization</option>
+      <option value="cardiologist">Cardiologist</option>
+      <option value="neurologist">Neurologist</option>
+      <option value="pediatrician">Pediatrician</option>
+    </select>
+    <div *ngIf="doctorForm.get('specialization')?.invalid && doctorForm.get('specialization')?.touched">
+      Specialization is required.
+    </div>
+
+    <label for="availableDate">Available Date</label>
+    <input id="availableDate" formControlName="availableDate" type="date" />
+    <div *ngIf="doctorForm.get('availableDate')?.invalid && doctorForm.get('availableDate')?.touched">
+      Select an available date.
+    </div>
+
+    <label for="message">Message</label>
+    <textarea id="message" formControlName="message" rows="3" placeholder="Additional message (optional)"></textarea>
+
+    <button type="submit" [disabled]="doctorForm.invalid">Submit</button>
+  </form>
+</div>
+</div>
+
+<div *ngIf="!isCreating">
+  <p>Doctor page.</p>
+  <app-doctor-list></app-doctor-list>
+</div>
+
+  

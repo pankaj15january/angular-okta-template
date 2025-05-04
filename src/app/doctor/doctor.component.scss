@@ -1,0 +1,59 @@
+.mat-form-field {
+    width: 100%; /* Ensures input/selects take full width */
+  }
+  
+  .mat-table td {
+    padding: 8px; /* Adjust padding for better spacing */
+  }
+  
+  .mat-form-field-in-table {
+    margin: 0; /* Removes unnecessary margin */
+    display: flex;
+    align-items: center;
+  }
+  
+  ///////////
+.form-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #ccc;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+}
